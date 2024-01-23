@@ -76,3 +76,28 @@ root.render(
     <App></App>
   </React.StrictMode>
 );
+
+/////////////////////////////////////////////////////////////////////
+// what is JSX
+//------------------------------------------------------------------
+// JSX declarative syntax to describe what component should look like and how it should behave
+// component is a function that returns JSX code (JSX is not HTML) and it is compiled to JS code that the browser can understand
+
+// JSX is extension of JS language syntax that allows us to write HTML, css and js code that looks like HTML
+
+// Babel is a JS compiler that takes JSX code and compiles it to JS code that the browser can understand.
+
+// JSX is not a requirement to write React apps, but it makes it easier and more readable
+
+// imperative vs declarative
+// imperative: how to do something (step by step) - jQuery is imperative (DOM manipulation)
+// step by step DOM mutation until we get the result we want.
+// we have to tell the browser what to do and how to do it (step by step) - we have to tell the browser to create a div, then add a class, then add an event listener, etc.
+
+// thats why frameworks like React are so popular and exist in the first place - they are declarative
+
+// declarative: what to do (what we want to achieve) - React is declarative - we tell React what we want to achieve and React will do it for us - we tell React that we want to create a div with a class and an event listener and React will do it for us
+
+// describe what UI should look like and how it should behave
+// React is an abstraction away from the DOM - we dont have to worry about the DOM, React will do it for us
+// instead we think of the UI as a reflection of the current data

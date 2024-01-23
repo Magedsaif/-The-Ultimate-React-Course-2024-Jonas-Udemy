@@ -72,6 +72,16 @@ function Menu() {
   );
 }
 function Footer() {
+  const hour = new Date().getHours();
+  const openHour = 12;
+  const closeHour = 22;
+  const isOpoen = hour >= openHour && hour < +closeHour;
+  console.log(isOpoen);
+
+  // we got the alert twice because in strict mode the components are rendered twice
+  // the alert is blocking the main thread
+  // if (hour >= openHour && hour < +closeHour) alert("we're currently open!");
+  // else alert("sorry we're closed !");
   // how bad if we had to write component like this without JSX
   //   return React.createElement("footer", null, "We are currently open!");
   return (

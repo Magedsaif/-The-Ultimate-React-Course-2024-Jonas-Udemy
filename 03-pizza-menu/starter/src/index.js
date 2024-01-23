@@ -133,3 +133,9 @@ root.render(
 // React is an abstraction away from the DOM - we dont have to worry about the DOM, React will do it for us
 // instead we think of the UI as a reflection of the current data
 /////////////////////////////////////////////////////////////////////
+// React component contains the data, logic, and the appearance.
+// nowadays logic and UI are tightly coupled and thats the fundamental reason for components
+
+// the old way was one technology per file which serves the traditional understanding of separation of concerns concept
+
+// one component per file and throwing the separation of concerns away, but actually we dont, because now we actually have each component is concerned with one piece of the UI

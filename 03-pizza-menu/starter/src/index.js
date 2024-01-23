@@ -71,13 +71,37 @@ function Menu() {
   return (
     <main className="menu">
       <h2>Our menu</h2>
-      <Pizza />
-      <Pizza />
-      <Pizza />
-      <Pizza />
+      <Pizza
+        name="Pizza spinaci"
+        ingredients="Tomato, mozarella, spinach, and ricotta cheese"
+        photoName="pizzas/spinaci.jpg"
+        price={10}
+      />
+      <Pizza
+        name="Pizza Funghi"
+        ingredients="Tomato, mashrooms"
+        price={12}
+        photoName="pizzas/funghi.jpg"
+      />
     </main>
   );
 }
+
+// first we made the component and then we nest it inside our app
+function Pizza(props) {
+  console.log(props);
+  return (
+    <div className="pizza">
+      <img src={props.photoName} alt={props.name} />
+      <div>
+        <h3>{props.name}</h3>
+        <p>{props.ingredients}</p>
+        <span>{props.price + 3}</span>
+      </div>
+    </div>
+  );
+}
+
 function Footer() {
   const hour = new Date().getHours();
   const openHour = 12;
@@ -99,16 +123,6 @@ function Footer() {
     <footer className="footer">
       {new Date().toLocaleTimeString()}. We are currently open!
     </footer>
-  );
-}
-// first we made the component and then we nest it inside our app
-function Pizza() {
-  return (
-    <div>
-      <img src="pizzas/spinaci.jpg" alt="pizza spinaci" />
-      <h3>Pizza Spinaci</h3>
-      <p>Tomato, mozarella, spinach, and ricotta cheese</p>
-    </div>
   );
 }
 
@@ -152,3 +166,7 @@ root.render(
 // the old way was one technology per file which serves the traditional understanding of separation of concerns concept
 
 // one component per file and throwing the separation of concerns away, but actually we dont, because now we actually have each component is concerned with one piece of the UI
+/////////////////////////////////////////////////////////////////////
+// probs
+//-------------------------------------------------------------------
+// probs are a way to pass data from a parent component to a child component, like a communication channel between components

@@ -1,5 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
+import "./index.css";
 const pizzaData = [
   {
     name: "Focaccia",
@@ -48,7 +49,7 @@ const pizzaData = [
 //each component can return just one element
 function App() {
   return (
-    <div>
+    <div className="container">
       <Header />
       <Menu />
       <Footer />
@@ -57,18 +58,24 @@ function App() {
 }
 
 function Header() {
-  return <h1>Fast React Pizza Co.</h1>;
+  // const style = { color: "red", fontSize: "48px", textTransform: "uppercase" };
+  const style = {};
+  return (
+    <header className="header">
+      <h1 style={style}>Fast React Pizza Co.</h1>
+    </header>
+  );
 }
 
 function Menu() {
   return (
-    <div>
+    <main className="menu">
       <h2>Our menu</h2>
       <Pizza />
       <Pizza />
       <Pizza />
       <Pizza />
-    </div>
+    </main>
   );
 }
 function Footer() {
@@ -79,13 +86,19 @@ function Footer() {
   console.log(isOpoen);
 
   // we got the alert twice because in strict mode the components are rendered twice
+
   // the alert is blocking the main thread
+
   // if (hour >= openHour && hour < +closeHour) alert("we're currently open!");
   // else alert("sorry we're closed !");
-  // how bad if we had to write component like this without JSX
+
+  // this is how bad if we had to write component like this without JSX
   //   return React.createElement("footer", null, "We are currently open!");
+
   return (
-    <footer>{new Date().toLocaleTimeString()}. We are currently open!</footer>
+    <footer className="footer">
+      {new Date().toLocaleTimeString()}. We are currently open!
+    </footer>
   );
 }
 // first we made the component and then we nest it inside our app
@@ -93,7 +106,7 @@ function Pizza() {
   return (
     <div>
       <img src="pizzas/spinaci.jpg" alt="pizza spinaci" />
-      <h2>Pizza Spinaci</h2>
+      <h3>Pizza Spinaci</h3>
       <p>Tomato, mozarella, spinach, and ricotta cheese</p>
     </div>
   );

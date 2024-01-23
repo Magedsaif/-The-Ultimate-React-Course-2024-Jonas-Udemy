@@ -49,14 +49,35 @@ const pizzaData = [
 function App() {
   return (
     <div>
-      <h1>Hello React!</h1>
-      <Pizza></Pizza>
-      <Pizza></Pizza>
-      <Pizza></Pizza>
+      <Header />
+      <Menu />
+      <Footer />
     </div>
   );
 }
 
+function Header() {
+  return <h1>Fast React Pizza Co.</h1>;
+}
+
+function Menu() {
+  return (
+    <div>
+      <h2>Our menu</h2>
+      <Pizza />
+      <Pizza />
+      <Pizza />
+      <Pizza />
+    </div>
+  );
+}
+function Footer() {
+  // how bad if we had to write component like this without JSX
+  //   return React.createElement("footer", null, "We are currently open!");
+  return (
+    <footer>{new Date().toLocaleTimeString()}. We are currently open!</footer>
+  );
+}
 // first we made the component and then we nest it inside our app
 function Pizza() {
   return (
@@ -101,3 +122,4 @@ root.render(
 // describe what UI should look like and how it should behave
 // React is an abstraction away from the DOM - we dont have to worry about the DOM, React will do it for us
 // instead we think of the UI as a reflection of the current data
+/////////////////////////////////////////////////////////////////////

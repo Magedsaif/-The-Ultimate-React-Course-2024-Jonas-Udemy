@@ -170,3 +170,26 @@ root.render(
 // probs
 //-------------------------------------------------------------------
 // probs are a way to pass data from a parent component to a child component, like a communication channel between components
+//we learnt about the logic and apperance, and react renders a component based on its current data, and the UI will always kept in sync with that data
+// but  what that data is ?
+// this data is made up of props and state
+
+// props are data passed from the outside and can only be updated by the parent to
+
+// state is internal data that is managed by the component's own logic)
+
+// props are immutable and state is mutable, so f you want to change the data, you have to change the state
+// but why do we need state if we have props ?
+// Well, to start, props are just an object.Therefore, if you change the props object in your component you would also affect the parent component because that's just how objects work in JavaScript.
+
+// So when you copy an object and mutate the copy,the original object will also be mutated. Now, if you change an object that is located outside of the component function, that function has then created a so-called side effect.So in general, a side effect happens whenever you change some data that's located outside of the current function.
+
+//React, however, is all about pure functions,so functions without side effects,at least when it's about a components data.
+
+// So components have to be pure in terms of their props and state, because this allows React to optimize your application and it avoids some strange bugs that can appear when you manipulate external data.
+
+// And in fact, we can extend this idea of immutability to React development in general.
+
+// So a component should never mutate any data that we write outside of its function scope
+
+// React uses a so-called one-way data flow, which means that data always flows from the parent component to the child component and never the other way around. So the child component can never change the data that it receives from the parent component. And that's why props are immutable.

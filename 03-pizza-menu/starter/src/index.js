@@ -68,14 +68,20 @@ function Header() {
 }
 
 function Menu() {
+  const pizzas = pizzaData;
+  // const pizzas = [];
+  const numPizzas = pizzas.length;
   return (
     <main className="menu">
       <h2>Our menu</h2>
-      <ul className="pizzas">
-        {pizzaData.map((pizza) => (
-          <Pizza pizzaobj={pizza} key={pizza.name} />
-        ))}
-      </ul>
+      {pizzas > 0 && (
+        <ul className="pizzas">
+          {pizzas.map((pizza) => (
+            <Pizza pizzaobj={pizza} key={pizza.name} />
+          ))}
+        </ul>
+      )}
+
       {/* <Pizza
         name="Pizza spinaci"
         ingredients="Tomato, mozarella, spinach, and ricotta cheese"
@@ -124,9 +130,17 @@ function Footer() {
   // this is how bad if we had to write component like this without JSX
   //   return React.createElement("footer", null, "We are currently open!");
 
+  // using short circuiting
   return (
     <footer className="footer">
-      {new Date().toLocaleTimeString()}. We are currently open!
+      {isOpoen && (
+        <div>
+          <p>
+            we're open untill {closeHour}:00. come visit us or order online{" "}
+          </p>
+          <button className="btn">Order</button>
+        </div>
+      )}
     </footer>
   );
 }

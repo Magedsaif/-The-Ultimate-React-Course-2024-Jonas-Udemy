@@ -69,8 +69,8 @@ function Header() {
 
 // we can't use if else statement inside the js mode in JSX, what we need to do is to write sthg that actually produces a value, and thats what if else statement cant do, so we use ternary operator
 function Menu() {
-  // const pizzas = pizzaData;
-  const pizzas = [];
+  const pizzas = pizzaData;
+  // const pizzas = [];
   const numPizzas = pizzas.length;
   return (
     <main className="menu">
@@ -78,14 +78,14 @@ function Menu() {
 
       {/* using terniry operator */}
       {numPizzas > 0 ? (
-        <div>
+        <>
           <p>Authentic italian cuisine</p>
           <ul className="pizzas">
             {pizzas.map((pizza) => (
               <Pizza pizzaobj={pizza} key={pizza.name} />
             ))}
           </ul>
-        </div>
+        </>
       ) : (
         <p> We are still working on our menu please comback later :) </p>
       )}
@@ -108,14 +108,14 @@ function Menu() {
 
 // first we made the component and then we nest it inside our app
 function Pizza({ pizzaobj }) {
-  if (pizzaobj.soldOut) return null;
+  // if (pizzaobj.soldOut) return null;
   return (
-    <li className="pizza">
+    <li className={`pizza ${pizzaobj.soldOut ? "sold-out" : ""}`}>
       <img src={pizzaobj.photoName} alt={pizzaobj.name} />
       <div>
         <h3>{pizzaobj.name}</h3>
         <p>{pizzaobj.ingredients}</p>
-        <span>{pizzaobj.price}</span>
+        <span>{pizzaobj.soldOut ? "SOLD OUT" : pizzaobj.price}</span>
       </div>
     </li>
   );

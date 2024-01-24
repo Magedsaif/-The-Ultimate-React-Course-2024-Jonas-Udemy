@@ -69,19 +69,23 @@ function Header() {
 
 // we can't use if else statement inside the js mode in JSX, what we need to do is to write sthg that actually produces a value, and thats what if else statement cant do, so we use ternary operator
 function Menu() {
-  const pizzas = pizzaData;
-  // const pizzas = [];
+  // const pizzas = pizzaData;
+  const pizzas = [];
   const numPizzas = pizzas.length;
   return (
     <main className="menu">
       <h2>Our menu</h2>
+
       {/* using terniry operator */}
       {numPizzas > 0 ? (
-        <ul className="pizzas">
-          {pizzas.map((pizza) => (
-            <Pizza pizzaobj={pizza} key={pizza.name} />
-          ))}
-        </ul>
+        <div>
+          <p>Authentic italian cuisine</p>
+          <ul className="pizzas">
+            {pizzas.map((pizza) => (
+              <Pizza pizzaobj={pizza} key={pizza.name} />
+            ))}
+          </ul>
+        </div>
       ) : (
         <p> We are still working on our menu please comback later :) </p>
       )}

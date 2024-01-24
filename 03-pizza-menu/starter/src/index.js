@@ -105,6 +105,7 @@ function Menu() {
 // first we made the component and then we nest it inside our app
 function Pizza(props) {
   console.log(props);
+  if (props.pizzaobj.soldOut) return null;
   return (
     <li className="pizza">
       <img src={props.pizzaobj.photoName} alt={props.pizzaobj.name} />
@@ -124,6 +125,7 @@ function Footer() {
   const isOpoen = hour >= openHour && hour < +closeHour;
   console.log(isOpoen);
 
+  // if (!isOpoen) return <p>Closed</p>;
   // we got the alert twice because in strict mode the components are rendered twice
 
   // the alert is blocking the main thread

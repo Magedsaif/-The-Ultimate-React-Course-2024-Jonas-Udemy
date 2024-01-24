@@ -103,16 +103,15 @@ function Menu() {
 }
 
 // first we made the component and then we nest it inside our app
-function Pizza(props) {
-  console.log(props);
-  if (props.pizzaobj.soldOut) return null;
+function Pizza({ pizzaobj }) {
+  if (pizzaobj.soldOut) return null;
   return (
     <li className="pizza">
-      <img src={props.pizzaobj.photoName} alt={props.pizzaobj.name} />
+      <img src={pizzaobj.photoName} alt={pizzaobj.name} />
       <div>
-        <h3>{props.pizzaobj.name}</h3>
-        <p>{props.pizzaobj.ingredients}</p>
-        <span>{props.pizzaobj.price}</span>
+        <h3>{pizzaobj.name}</h3>
+        <p>{pizzaobj.ingredients}</p>
+        <span>{pizzaobj.price}</span>
       </div>
     </li>
   );
@@ -128,8 +127,6 @@ function Footer() {
   // if (!isOpoen) return <p>Closed</p>;
   // we got the alert twice because in strict mode the components are rendered twice
 
-  // the alert is blocking the main thread
-
   // if (hour >= openHour && hour < +closeHour) alert("we're currently open!");
   // else alert("sorry we're closed !");
 
@@ -140,18 +137,25 @@ function Footer() {
   return (
     <footer className="footer">
       {isOpoen ? (
-        <div>
-          <p>
-            we're open untill {closeHour}:00. come visit us or order online{" "}
-          </p>
-          <button className="btn">Order</button>
-        </div>
+        <Order closeHour={closeHour} openHour={openHour} />
       ) : (
         <p>
           we are happy to welcome you between {openHour}:00 and {closeHour}:00.
         </p>
       )}
     </footer>
+  );
+}
+// extractiong components into another and pass the information through probs
+function Order({ closeHour, openHour }) {
+  return (
+    <div>
+      <p>
+        we're open from {openHour}:00 to {closeHour}:00. come visit us or order
+        online{" "}
+      </p>
+      <button className="btn">Order</button>
+    </div>
   );
 }
 

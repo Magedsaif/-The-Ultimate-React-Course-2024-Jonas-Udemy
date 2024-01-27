@@ -39,3 +39,10 @@ export default function App() {
     </div>
   );
 }
+
+// State is a Data that a component can have and can change over time, necessey for information that it needs to remember throughout app's lifetcycle (like a counter) or data that is fetched from an API (like a list of users) or data that is changed by the user (like a form input),
+// State is a component's memory
+// "State variable" / "piece of state": A single variable that is stored in a component's state
+// updating component's state triggers React tp re-render the component (and its children) and update the DOM (if needed) to match the new state of the component.
+// State is a how react keeps the UI in sync with the data, we change the state, we re-render the component, we change the UI.
+// it allowas developers to: 1) Update the compnents view (by re-rendering it) 2) Persist data(local variables) between renders (by storing it in state)

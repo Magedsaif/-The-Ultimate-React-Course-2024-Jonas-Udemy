@@ -7,9 +7,15 @@ const messages = [
 ];
 
 // use state is a hook
+// 3 steps inorder to use a state in our code
+// 1- we add a new state variable =>>> const [sthg, setSthg] = useState(--default value--)
+// 2- use that state variable in JSX
+// 3- update the piece of state in some event handler using setSthg, passing the opposite of the current state
+
 export default function App() {
   const [step, setStep] = useState(1);
-  const [test, setTest] = useState({ name: "jonas" });
+  const [isOpen, setIsOpen] = useState(true);
+  // const [test, setTest] = useState({ name: "jonas" });
 
   function handlePrevious() {
     if (step > 1) setStep(step - 1);
@@ -19,37 +25,45 @@ export default function App() {
     if (step < 3) setStep(step + 1);
     // BAD PRACTICE
     // test.name = "fred";
-    setTest({ name: "fred" });
+    // setTest({ name: "fred" });
   }
 
   return (
-    <div className="steps">
-      <div className="numbers">
-        <div className={step >= 2 ? "active" : ""}>2</div>
-        <div className={step >= 1 ? "active" : ""}>1</div>
-        <div className={step >= 3 ? "active" : ""}>3</div>
-      </div>
+    <>
+      <button className="close" onClick={() => setIsOpen(!isOpen)}>
+        &times;
+      </button>
+      {/* using conditional rendering */}
+      {isOpen && (
+        <div className="steps">
+          <div className="numbers">
+            <div className={step >= 1 ? "active" : ""}>1</div>
+            <div className={step >= 2 ? "active" : ""}>2</div>
+            <div className={step >= 3 ? "active" : ""}>3</div>
+          </div>
 
-      <p className="message">
-        Step {step}: {messages[step - 1]}
-        {test.name}
-      </p>
-      {/* this is how we handle events in react, we attach a onCliclk Prop over the elements we want to handle and specifiy a function to do sthg] */}
-      <div className="buttons">
-        <button
-          style={{ backgroundColor: "#7950f2", color: "#ffffff" }}
-          onClick={handlePrevious}
-        >
-          Previous
-        </button>
-        <button
-          style={{ backgroundColor: "#7950f2", color: "#ffffff" }}
-          onClick={handleNext}
-        >
-          Next
-        </button>
-      </div>
-    </div>
+          <p className="message">
+            Step {step}: {messages[step - 1]}
+            {/* {test.name} */}
+          </p>
+          {/* this is how we handle events in react, we attach a onCliclk Prop over the elements we want to handle and specifiy a function to do sthg] */}
+          <div className="buttons">
+            <button
+              style={{ backgroundColor: "#7950f2", color: "#ffffff" }}
+              onClick={handlePrevious}
+            >
+              Previous
+            </button>
+            <button
+              style={{ backgroundColor: "#7950f2", color: "#ffffff" }}
+              onClick={handleNext}
+            >
+              Next
+            </button>
+          </div>
+        </div>
+      )}
+    </>
   );
 }
 

@@ -10,7 +10,7 @@ const messages = [
 // 3 steps inorder to use a state in our code
 // 1- we add a new state variable =>>> const [sthg, setSthg] = useState(--default value--)
 // 2- use that state variable in JSX
-// 3- update the piece of state in some event handler using setSthg, passing the opposite of the current state
+// 3- update the piece of state in some event handler using setSthg, passing the opposite of the current state (better convention to pass a call back function)
 
 export default function App() {
   const [step, setStep] = useState(1);
@@ -18,11 +18,11 @@ export default function App() {
   // const [test, setTest] = useState({ name: "jonas" });
 
   function handlePrevious() {
-    if (step > 1) setStep(step - 1);
+    if (step > 1) setStep((s) => s - 1);
   }
 
   function handleNext() {
-    if (step < 3) setStep(step + 1);
+    if (step < 3) setStep((s) => s + 1);
     // BAD PRACTICE
     // test.name = "fred";
     // setTest({ name: "fred" });
@@ -30,7 +30,7 @@ export default function App() {
 
   return (
     <>
-      <button className="close" onClick={() => setIsOpen(!isOpen)}>
+      <button className="close" onClick={() => setIsOpen((is) => !is)}>
         &times;
       </button>
       {/* using conditional rendering */}

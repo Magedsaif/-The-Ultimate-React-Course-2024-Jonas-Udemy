@@ -6,6 +6,9 @@ const messages = [
 
 export default function App() {
   const step = 1;
+  function handlePrevious() {
+    alert("Previous");
+  }
 
   return (
     <div className="steps">
@@ -18,11 +21,18 @@ export default function App() {
       <p className="message">
         Step {step}: {messages[step - 1]}
       </p>
+      {/* this is how we handle events in react, we attach a onCliclk Prop over the elements we want to handle and specifiy a function to do sthg] */}
       <div className="buttons">
-        <button style={{ backgroundColor: "#7950f2", color: "#ffffff" }}>
+        <button
+          style={{ backgroundColor: "#7950f2", color: "#ffffff" }}
+          onClick={handlePrevious}
+        >
           Previous
         </button>
-        <button style={{ backgroundColor: "#7950f2", color: "#ffffff" }}>
+        <button
+          style={{ backgroundColor: "#7950f2", color: "#ffffff" }}
+          onClick={() => alert("Next")}
+        >
           Next
         </button>
       </div>

@@ -10,7 +10,7 @@ const messages = [
 // 3 steps inorder to use a state in our code
 // 1- we add a new state variable =>>> const [sthg, setSthg] = useState(--default value--)
 // 2- use that state variable in JSX
-// 3- update the piece of state in some event handler using setSthg, passing the opposite of the current state (better convention to pass a call back function)
+// 3- update the piece of state in some event handler using setSthg, passing the opposite of the current state (better convention to pass a call back function) --updateing state based on current state
 
 export default function App() {
   const [step, setStep] = useState(1);
@@ -73,3 +73,7 @@ export default function App() {
 // updating component's state triggers React tp re-render the component (and its children) and update the DOM (if needed) to match the new state of the component.
 // State is a how react keeps the UI in sync with the data, we change the state, we re-render the component, we change the UI.
 // it allowas developers to: 1) Update the compnents view (by re-rendering it) 2) Persist data(local variables) between renders (by storing it in state)
+
+// UI AS A FUNCTION OF STATE
+// the entire UI is always a representation of all the current states in all components, then A react app is fundamentally all about changing state all ovetr time.
+// with state, we view UI as a reflection of data changing over time

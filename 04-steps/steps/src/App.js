@@ -9,6 +9,7 @@ const messages = [
 // use state is a hook
 export default function App() {
   const [step, setStep] = useState(1);
+  const [test, setTest] = useState({ name: "jonas" });
 
   function handlePrevious() {
     if (step > 1) setStep(step - 1);
@@ -16,6 +17,9 @@ export default function App() {
 
   function handleNext() {
     if (step < 3) setStep(step + 1);
+    // BAD PRACTICE
+    // test.name = "fred";
+    setTest({ name: "fred" });
   }
 
   return (
@@ -28,6 +32,7 @@ export default function App() {
 
       <p className="message">
         Step {step}: {messages[step - 1]}
+        {test.name}
       </p>
       {/* this is how we handle events in react, we attach a onCliclk Prop over the elements we want to handle and specifiy a function to do sthg] */}
       <div className="buttons">

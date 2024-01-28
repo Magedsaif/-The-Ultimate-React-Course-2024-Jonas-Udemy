@@ -13,6 +13,15 @@ const messages = [
 // 3- update the piece of state in some event handler using setSthg, passing the opposite of the current state (better convention to pass a call back function) --updateing state based on current state
 
 export default function App() {
+  return (
+    <div>
+      <Steps></Steps>
+      <Steps></Steps>
+    </div>
+  );
+}
+
+function Steps() {
   const [step, setStep] = useState(1);
   const [isOpen, setIsOpen] = useState(true);
   // const [test, setTest] = useState({ name: "jonas" });
@@ -76,4 +85,4 @@ export default function App() {
 
 // UI AS A FUNCTION OF STATE
 // the entire UI is always a representation of all the current states in all components, then A react app is fundamentally all about changing state all ovetr time.
-// with state, we view UI as a reflection of data changing over time
+// with state, we view UI as a reflection of data changing over time, we describe that reflection of data using state, event handlers, and JSX

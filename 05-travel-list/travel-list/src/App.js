@@ -7,11 +7,17 @@ const initialItems = [
 ];
 
 export default function App() {
+  // lifting state up, means that whenever multiple sibling components needs access to the same state, we move that piece of state up to the first common parent compnent
+  const [items, setItems] = useState([]);
+  function handleAddItems(item){
+    // because of react immutability we could not use push method to mutate the original array. hence, we return a new array spreading the items array adding the new item recived to the newly created array.
+    setItems((items)=>[...items, item]);
+  }
   return (
     <div className="app">
       <Logo></Logo>
-      <Form></Form>
-      <PackingList></PackingList>
+      <Form onAdditems={handleAddItems}></Form>
+      <PackingList items={items}></PackingList>
       <Stats></Stats>
     </div>
   );
@@ -20,7 +26,7 @@ export default function App() {
 function Logo() {
   return <h1>🏝️ Far Away 🧳</h1>;
 }
-function Form() {
+function Form({onAdditems}) {
   const [description, setDescription] = useState("");
   const [quantity, setQuantity] = useState(1);
 
@@ -29,6 +35,8 @@ function Form() {
 
     if (!description) return;
     const newItem = { description, quantity, packed: false, id: Date.now() };
+    console.log(newItem);
+    onAdditems(newItem);
     setDescription("");
     setQuantity(1);
   }
@@ -60,11 +68,11 @@ function Form() {
   );
 }
 // how we render a list in React, we use the map method on the array
-function PackingList() {
+function PackingList({items}) {
   return (
     <div className="list">
       <ul>
-        {initialItems.map((item) => (
+        {items.map((item) => (
           <Item item={item} key={item.id} />
         ))}
       </ul>

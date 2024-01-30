@@ -1,23 +1,34 @@
 import { useState } from "react";
 
-const initialItems = [
-  { id: 1, description: "Passports", quantity: 2, packed: false },
-  { id: 2, description: "Socks", quantity: 12, packed: false },
-  { id: 3, description: "charger", quantity: 1, packed: true },
-];
-
 export default function App() {
   // lifting state up, means that whenever multiple sibling components needs access to the same state, we move that piece of state up to the first common parent compnent
   const [items, setItems] = useState([]);
-  function handleAddItems(item){
+  function handleAddItems(item) {
     // because of react immutability we could not use push method to mutate the original array. hence, we return a new array spreading the items array adding the new item recived to the newly created array.
-    setItems((items)=>[...items, item]);
+    setItems((items) => [...items, item]);
+  }
+
+  // i dont want to mutate the items array so i use filter to exclude the item with the passed id to the function and return a newly updated array
+  function handleDeleteItem(id) {
+    setItems((items) => items.filter((item) => item.id !== id));
+  }
+  // updating an object in an array
+  function handleToggleItem(id) {
+    setItems((items) =>
+      items.map((item) =>
+        item.id === id ? { ...item, packed: !item.packed } : item
+      )
+    );
   }
   return (
     <div className="app">
       <Logo></Logo>
       <Form onAdditems={handleAddItems}></Form>
-      <PackingList items={items}></PackingList>
+      <PackingList
+        items={items}
+        onDeleteItem={handleDeleteItem}
+        onToggleItem={handleToggleItem}
+      ></PackingList>
       <Stats></Stats>
     </div>
   );
@@ -26,7 +37,7 @@ export default function App() {
 function Logo() {
   return <h1>🏝️ Far Away 🧳</h1>;
 }
-function Form({onAdditems}) {
+function Form({ onAdditems }) {
   const [description, setDescription] = useState("");
   const [quantity, setQuantity] = useState(1);
 
@@ -68,25 +79,36 @@ function Form({onAdditems}) {
   );
 }
 // how we render a list in React, we use the map method on the array
-function PackingList({items}) {
+function PackingList({ items, onDeleteItem, onToggleItem }) {
   return (
     <div className="list">
       <ul>
         {items.map((item) => (
-          <Item item={item} key={item.id} />
+          <Item
+            item={item}
+            key={item.id}
+            onDeleteItem={onDeleteItem}
+            onToggleItem={onToggleItem}
+          />
         ))}
       </ul>
     </div>
   );
 }
 
-function Item({ item }) {
+// controlled element means that the element has a value attribute of some state and an event handler which listens for the change and update the state accordingly
+function Item({ item, onDeleteItem, onToggleItem }) {
   return (
     <li>
+      <input
+        type="checkbox"
+        value={item.packed}
+        onChange={() => onToggleItem(item.id)}
+      ></input>
       <span style={item.packed ? { textDecoration: "line-through" } : {}}>
         {item.quantity} {item.description}
       </span>
-      <button>&times;</button>
+      <button onClick={() => onDeleteItem(item.id)}>❌</button>
     </li>
   );
 }

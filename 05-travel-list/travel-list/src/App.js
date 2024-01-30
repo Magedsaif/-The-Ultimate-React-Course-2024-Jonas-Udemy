@@ -128,3 +128,7 @@ Now finally, while state is used by developers to make components interactive, p
 So basically props can be seen as settings in child components, which the parent component can define as they wish, and that's it.
 */
 // whenever a piece of state is passed as a prob, when that state updates, both components are re-rendered, so both the component owning the state and recieving it(as a prob) thats a connection between states and probs.
+
+// by lifting stae up, we have succefully shared one pieace of state with multiple components in different positions in the components.
+
+// child to parent communication (inverse data flow): child updating parent state (data "flowing" up), passing a setter function which used to update the state as a prop (through a function)

@@ -3,6 +3,7 @@ import { useState } from "react";
 export default function App() {
   // lifting state up, means that whenever multiple sibling components needs access to the same state, we move that piece of state up to the first common parent compnent
   const [items, setItems] = useState([]);
+
   function handleAddItems(item) {
     // because of react immutability we could not use push method to mutate the original array. hence, we return a new array spreading the items array adding the new item recived to the newly created array.
     setItems((items) => [...items, item]);
@@ -29,7 +30,7 @@ export default function App() {
         onDeleteItem={handleDeleteItem}
         onToggleItem={handleToggleItem}
       ></PackingList>
-      <Stats></Stats>
+      <Stats items={items}></Stats>
     </div>
   );
 }
@@ -112,10 +113,25 @@ function Item({ item, onDeleteItem, onToggleItem }) {
     </li>
   );
 }
-function Stats() {
+function Stats({ items }) {
+  // benefit of early return is to avoid doing unneeded calculations on the element if there is no packed items yet!
+  if (!items.length)
+    return (
+      <p className="stats">start adding some items to your packing list 🚀</p>
+    );
+  const numItems = items.length;
+  console.log(items);
+  const packedItems = items.filter((item) => item.packed).length;
+  const percentage = Math.round((packedItems / numItems) * 100);
+  console.log(percentage);
+
   return (
     <footer className="stats">
-      <em>you have X items in your list, and you already packed X (x%)</em>
+      <em>
+        {percentage < 100
+          ? `you have ${numItems} items in your list, and you already packed ${packedItems} (${percentage}%)`
+          : "you are done, ready to go ✈️"}
+      </em>
     </footer>
   );
 }
@@ -154,3 +170,5 @@ So basically props can be seen as settings in child components, which the parent
 // by lifting stae up, we have succefully shared one pieace of state with multiple components in different positions in the components.
 
 // child to parent communication (inverse data flow): child updating parent state (data "flowing" up), passing a setter function which used to update the state as a prop (through a function)
+
+// Derived state: state that is computed from an existing piace of state or from probs, we bant allow seperate depending poeaces of states exist, that would be problamatic, we need to keep them in sync ( update togeter), and each update the component will be re-rendered

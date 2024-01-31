@@ -16,6 +16,14 @@ export default function App() {
   return (
     <div>
       <Steps></Steps>
+      <StepMessage step={1}>
+        <p>Pass in content</p>
+        <p>👉</p>
+      </StepMessage>
+      <StepMessage step={2}>
+        <p>Read childern prob</p>
+        <p>👈</p>
+      </StepMessage>
       {/* <Steps></Steps> */}
     </div>
   );
@@ -51,10 +59,18 @@ function Steps() {
             <div className={step >= 3 ? "active" : ""}>3</div>
           </div>
 
-          <p className="message">
-            Step {step}: {messages[step - 1]}
-            {/* {test.name} */}
-          </p>
+          <StepMessage step={step}>
+            <div className="buttons">
+              <Button
+                bgColor="#e7e7e7"
+                textColor="#333"
+                onClick={() => alert(`Learn how to ${messages[step - 1]}`)}
+              >
+                Learn how
+              </Button>
+            </div>
+          </StepMessage>
+
           {/* this is how we handle events in react, we attach a onCliclk Prop over the elements we want to handle and specifiy a function to do sthg] */}
           <div className="buttons">
             <Button bgColor="#7950f2" textColor="#fff" onClick={handlePrevious}>
@@ -70,11 +86,21 @@ function Steps() {
   );
 }
 
+function StepMessage({ step, children }) {
+  return (
+    <div className="message">
+      <h3>Step {step}</h3>
+      {children}
+    </div>
+  );
+}
+
 // this is already so many probs on a small feature
 // children prob
 // The 'children' prop is a prop that each React component automatically receives.
 // The value of the 'children' prop is exactly what is between the opening
 // and the closing tag of the component.
+// thats good for making generic and reusable combonent
 function Button({ textColor, bgColor, onClick, children }) {
   return (
     <button

@@ -13,8 +13,8 @@ const textStyle = {
   lineHeight: "1",
   margin: "0",
 };
-
-export default function StarRating(maxRating) {
+// setting default probs
+export default function StarRating({ maxRating = 5 }) {
   return (
     <div style={containerStyle}>
       <div style={starContainerStyle}>

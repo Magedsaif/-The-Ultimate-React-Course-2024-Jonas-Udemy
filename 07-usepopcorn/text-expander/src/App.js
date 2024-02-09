@@ -39,19 +39,27 @@ function TextExpander({
   children,
   collapsedNumWords = 10,
   expandButtonText = "Show more",
-  collapseButtonText = "Show less ",
+  collapseButtonText = "Show less",
   buttonColor = "blue",
-  expanded = "false",
+  expanded = false,
   className = "",
 }) {
-  const [wordNumber, setWordNumber] = useState(collapsedNumWords);
-  const [buttonText, setButtonText] = useState();
-  const child = [];
-  child.push(children.slice(0, collapsedNumWords));
+  const [isExpanded, setIsExpanded] = useState(expanded);
+
+  const handleToggle = () => {
+    setIsExpanded(!isExpanded);
+  };
+
   return (
     <div className={className}>
-      <p>{child}</p>
-      <button style={{ color: buttonColor }}>showless</button>
+      <div>
+        {isExpanded
+          ? children
+          : children.split(" ").slice(0, collapsedNumWords).join(" ") + "..."}
+      </div>
+      <button style={{ color: buttonColor }} onClick={handleToggle}>
+        {isExpanded ? collapseButtonText : expandButtonText}
+      </button>
     </div>
   );
 }

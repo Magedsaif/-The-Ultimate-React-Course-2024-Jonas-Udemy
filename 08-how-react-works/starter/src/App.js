@@ -26,6 +26,9 @@ export default function App() {
   );
 }
 
+console.log(<DifferentContent test={23} />);
+console.log(DifferentContent());
+
 function Tabbed({ content }) {
   const [activeTab, setActiveTab] = useState(0);
 
@@ -98,3 +101,5 @@ function DifferentContent() {
     </div>
   );
 }
+
+// Component => component instance => React element => DOM node => pixels on the screen

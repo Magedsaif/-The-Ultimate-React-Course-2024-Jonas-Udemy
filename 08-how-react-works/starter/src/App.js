@@ -106,3 +106,12 @@ function DifferentContent() {
 }
 
 // Component => component instance => React element => DOM node => pixels on the screen
+
+// Rules for Render Logic: components must be pure, deterministic, and free of side effects (no I/O, no network requests, no timers, no random numbers, no global state, no mutation of props or state)
+// Do not mutate objects or variables outside of the function scope (thats why we cant mutate props)
+
+// side effects are allowed in event handlers, useEffect, and custom hooks
+
+// updated state variables are not immediately available after setState call, they are batched and updated in the next render cycle (after a re-render)
+
+// if we want to use the previous state to calculate the next state, we can pass a callback function to setState instead of an object (this is the recommended way

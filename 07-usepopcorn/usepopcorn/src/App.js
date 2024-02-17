@@ -46,7 +46,14 @@ const tempWatchedData = [
     userRating: 9,
   },
 ];
+// Side effect is any "interactio between a react component and the world outside the component". also think of it as "code that actually does sthg".
 
+// Examples: Data fetching, setting up subscriptions, setting up timers, manually accessing the DOM, etc.
+
+// Effects allow us to write code that will run at differnent moments of the component instance life cycle: mount, re-render, or unmount
+// event handlers and use effects could produce the same result but at different moments
+// the real reason why effects exist is not to run code at different points of the life cycle
+// but to keep a component synchronized with some externel system, on the other hand we use handlers to react to certain events that happend in user interface, and its the prefferd way of creating side effects
 const average = (arr) =>
   arr.reduce((acc, cur, i, arr) => acc + cur / arr.length, 0);
 

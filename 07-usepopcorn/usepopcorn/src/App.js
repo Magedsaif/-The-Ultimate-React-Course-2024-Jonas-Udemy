@@ -293,3 +293,13 @@ function WatchedMovie({ movie }) {
     </li>
   );
 }
+
+// The dependency array
+
+// By default, effects run after every render. we can prevent that by passing a dependency array
+
+// without dependency array, react doesnt know WHEN to run the effect
+
+// Each time one othe dependencies changes, the effect will be executed again.
+
+// every state variable and prop used inside the effect MUST be included in the dependency array, otherwise it will lead to a bug called "stale closure"

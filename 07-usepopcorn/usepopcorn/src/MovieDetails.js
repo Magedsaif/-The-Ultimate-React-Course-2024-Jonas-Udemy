@@ -14,7 +14,6 @@ export function MovieDetails({
   const [userRating, setUserRating] = useState("");
 
   const isWatched = watched.map((movie) => movie.imdbID).includes(selectedId);
-  console.log(isWatched);
 
   const watchedUserRating = watched.find(
     (movie) => movie.imdbID === selectedId
@@ -66,6 +65,11 @@ export function MovieDetails({
     function () {
       if (!title) return;
       document.title = `Movie | ${title}`;
+
+      return function () {
+        document.title = "usePopcorn";
+        console.log(`clean up effect for movie ${title}`);
+      };
     },
     [title]
   );

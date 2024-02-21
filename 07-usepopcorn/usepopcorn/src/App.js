@@ -57,33 +57,7 @@ const tempWatchedData = [
     userRating: 9,
   },
 ];
-// Side effect is any "interactio between a react component and the world outside the component". also think of it as "code that actually does sthg".
 
-// Examples: Data fetching, setting up subscriptions, setting up timers, manually accessing the DOM, etc.
-
-// Effects allow us to write code that will run at differnent moments of the component instance life cycle: mount, re-render, or unmount
-// event handlers and use effects could produce the same result but at different moments
-// the real reason why effects exist is not to run code at different points of the life cycle
-// but to keep a component synchronized with some externel system, on the other hand we use handlers to react to certain events that happend in user interface, and its the prefferd way of creating side effects
-
-/*   // Effects only run after the browser paint
-  useEffect(function () {
-    console.log("After the initial render");
-  }, []);
-
-  // has no DA, so this affext is synchronized with every thing, so it needs to eun with every render
-  useEffect(function () {
-    console.log("After every render");
-  });
-
-  useEffect(
-    function () {
-      console.log("D");
-    },
-    [query]
-  );
-  // this a render logic, so it runs during render
-  console.log("During render"); */
 export const average = (arr) =>
   arr.reduce((acc, cur, i, arr) => acc + cur / arr.length, 0);
 
@@ -115,12 +89,15 @@ export default function App() {
 
   useEffect(
     function () {
+      const controller = new AbortController();
+
       async function fetchMovies() {
         try {
           setIsLoading(true);
           setError("");
           const res = await fetch(
-            `http://www.omdbapi.com/?apikey=${KEY}&s=${query}`
+            `http://www.omdbapi.com/?apikey=${KEY}&s=${query}`,
+            { signal: controller.signal }
           );
 
           if (!res.ok)
@@ -129,9 +106,12 @@ export default function App() {
           const data = await res.json();
           if (data.Response === "False") throw new Error("Movie not found");
           setMovies(data.Search);
+          setError("");
         } catch (err) {
           console.log(err.message);
-          setError(err.message);
+          if (err.name !== "AbortError") {
+            setError(err.message);
+          }
         } finally {
           setIsLoading(false);
         }
@@ -144,6 +124,10 @@ export default function App() {
       }
 
       fetchMovies();
+
+      return function () {
+        controller.abort();
+      };
     },
     [query]
   );
@@ -194,3 +178,40 @@ export default function App() {
     </>
   );
 }
+
+// Side effect is any "interaction between a react component and the world outside the component". also think of it as "code that actually does sthg".
+
+// Examples: Data fetching, setting up subscriptions, setting up timers, manually accessing the DOM, etc.
+
+// Effects allow us to write code that will run at differnent moments of the component instance life cycle: mount, re-render, or unmount
+// event handlers and use effects could produce the same result but at different moments
+// the real reason why effects exist is not to run code at different points of the life cycle
+// but to keep a component synchronized with some externel system, on the other hand we use handlers to react to certain events that happend in user interface, and its the prefferd way of creating side effects
+
+/*   // Effects only run after the browser paint
+  useEffect(function () {
+    console.log("After the initial render");
+  }, []);
+
+  // has no DA, so this affext is synchronized with every thing, so it needs to eun with every render
+  useEffect(function () {
+    console.log("After every render");
+  });
+
+  useEffect(
+    function () {
+      console.log("D");
+    },
+    [query]
+  );
+  // this a render logic, so it runs during render
+  console.log("During render"); */
+
+// the cleanup function
+// USEEFFECT cleanup function
+// function that we can return from an effect (optional)
+// runs on 2 diff occassions:
+// 1- Before the effect is executed again
+// 2- After a component has unmounted
+// we need a cleanup function whenever the side effect keeps happening after the component rerendered or un mounted
+// each effect should only do one thing

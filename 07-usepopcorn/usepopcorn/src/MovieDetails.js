@@ -45,6 +45,23 @@ export function MovieDetails({
     onAddWatched(newWatchedMovie);
     onCloseMovie();
   }
+
+  useEffect(
+    function () {
+      function callBack(e) {
+        if (e.code === "Escape") {
+          onCloseMovie();
+        }
+      }
+      document.addEventListener("keydown", callBack);
+
+      return function () {
+        document.removeEventListener("keydown", callBack);
+      };
+    },
+    [onCloseMovie]
+  );
+
   useEffect(
     function () {
       async function getMovieDetails() {
@@ -68,7 +85,7 @@ export function MovieDetails({
 
       return function () {
         document.title = "usePopcorn";
-        console.log(`clean up effect for movie ${title}`);
+        // console.log(`clean up effect for movie ${title}`);
       };
     },
     [title]

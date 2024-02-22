@@ -25,6 +25,7 @@ export default function App() {
 
   // const [watched, setWatched] = useState([]);
   // whenever the initial value of the useState hook depends on some sort of computation we should always pass a function like this(a function that react can execute on its initial render)
+  // Lazy evaluation
   const [watched, setWatched] = useState(function () {
     const storedValue = localStorage.getItem("watched");
     return JSON.parse(storedValue);

@@ -10,6 +10,7 @@ import { MovieList } from "./MovieList";
 import { MovieDetails } from "./MovieDetails";
 import { WatchedMoviesList } from "./WatchedMoviesList";
 import { WatchedSummary } from "./WatchedSummary";
+import { useMovies } from "./useMovies";
 
 export const average = (arr) =>
   arr.reduce((acc, cur, i, arr) => acc + cur / arr.length, 0);
@@ -18,10 +19,9 @@ export const KEY = "f84fc31d";
 
 export default function App() {
   const [query, setQuery] = useState("");
-  const [movies, setMovies] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState("");
   const [selectedId, setSelectedId] = useState(null);
+
+  const { movies, isLoading, error } = useMovies(query);
 
   // const [watched, setWatched] = useState([]);
   // whenever the initial value of the useState hook depends on some sort of computation we should always pass a function like this(a function that react can execute on its initial render)
@@ -54,50 +54,6 @@ export default function App() {
       localStorage.setItem("watched", JSON.stringify(watched));
     },
     [watched]
-  );
-
-  useEffect(
-    function () {
-      const controller = new AbortController();
-
-      async function fetchMovies() {
-        try {
-          setIsLoading(true);
-          setError("");
-          const res = await fetch(
-            `http://www.omdbapi.com/?apikey=${KEY}&s=${query}`,
-            { signal: controller.signal }
-          );
-
-          if (!res.ok)
-            throw new Error("something went wrong with fetching movies");
-
-          const data = await res.json();
-          if (data.Response === "False") throw new Error("Movie not found");
-          setMovies(data.Search);
-          setError("");
-        } catch (err) {
-          if (err.name !== "AbortError") {
-            setError(err.message);
-          }
-        } finally {
-          setIsLoading(false);
-        }
-      }
-
-      if (query.length < 3) {
-        setMovies([]);
-        setError("");
-        return;
-      }
-
-      fetchMovies();
-
-      return function () {
-        controller.abort();
-      };
-    },
-    [query]
   );
 
   return (
@@ -183,3 +139,6 @@ export default function App() {
 // 2- After a component has unmounted
 // we need a cleanup function whenever the side effect keeps happening after the component rerendered or un mounted
 // each effect should only do one thing
+
+// custom hooks allow us to reuse non-visual logic in multiple components, and should only have one purpose
+// Custom hooks, needs to start with use, needs to use one or more hooks, unlike components can recieve and return any relevant data (usually [] or {})

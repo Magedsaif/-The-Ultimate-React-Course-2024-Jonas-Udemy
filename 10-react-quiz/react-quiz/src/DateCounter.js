@@ -82,3 +82,5 @@ function DateCounter() {
   );
 }
 export default DateCounter;
+
+// we use the useReducer hook to centralize all the state updating logic in one central place (Reducer function)

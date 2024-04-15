@@ -12,17 +12,16 @@ import {
 import { useEffect, useState } from "react";
 import { useGeolocation } from "../hooks/useGeolocation";
 import Button from "./Button";
+import { useUrlPosition } from "../hooks/useUrlPosition";
 
 function Map() {
   //programatic navigation
   const [mapPosition, setMapPosition] = useState([40, 0]);
   const { cities } = useCities();
-  const [searchParams] = useSearchParams();
-
+  
   const {isLoading: isLoadingPosition, position: geolocationPosition, getPosition} = useGeolocation();
-
-  const mapLat = searchParams.get("lat");
-  const mapLng = searchParams.get("lng");
+  
+const [mapLat, mapLng] = useUrlPosition();
 
   useEffect(
     function () {

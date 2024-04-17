@@ -1,123 +1,15 @@
 {
   "cities": [
     {
-      "cityName": "Lisbon",
-      "country": "Portugal",
-      "emoji": "🇵🇹",
-      "date": "2027-10-31T15:59:59.138Z",
-      "notes": "My favorite city so far!",
-      "position": {
-        "lat": 38.727881642324164,
-        "lng": -9.140900099907554
-      },
-      "id": "73930385"
-    },
-    {
-      "cityName": "Madrid",
+      "id": "8a0a",
+      "cityName": "Pancrudo",
       "country": "Spain",
       "emoji": "🇪🇸",
-      "date": "2027-07-15T08:22:53.976Z",
-      "notes": "",
+      "date": "2024-04-17T16:16:01.402Z",
+      "notes": "test",
       "position": {
-        "lat": 40.46635901755316,
-        "lng": -3.7133789062500004
-      },
-      "id": "17806751"
-    },
-    {
-      "cityName": "Berlin",
-      "country": "Germany",
-      "emoji": "🇩🇪",
-      "date": "2027-02-12T09:24:11.863Z",
-      "notes": "Amazing 😃",
-      "position": {
-        "lat": 52.53586782505711,
-        "lng": 13.376933665713324
-      },
-      "id": "98443197"
-    },
-    {
-      "id": "7057",
-      "cityName": "Vauchassis",
-      "country": "France",
-      "emoji": "🇫🇷",
-      "date": "2024-04-17T14:44:39.388Z",
-      "notes": "",
-      "position": {
-        "lat": "48.19538740833338",
-        "lng": "3.9550781250000004"
-      }
-    },
-    {
-      "id": "0288",
-      "cityName": "Villanueva de Cordoba",
-      "country": "Spain",
-      "emoji": "🇪🇸",
-      "date": "2024-04-17T15:13:38.587Z",
-      "notes": "",
-      "position": {
-        "lat": "38.16911413556086",
-        "lng": "-4.702148437500001"
-      }
-    },
-    {
-      "id": "265e",
-      "cityName": "Requena",
-      "country": "Spain",
-      "emoji": "🇪🇸",
-      "date": "2024-04-17T15:17:32.895Z",
-      "notes": "a",
-      "position": {
-        "lat": "39.38526381099774",
-        "lng": "-1.1206054687500002"
-      }
-    },
-    {
-      "id": "4db8",
-      "cityName": "Requena",
-      "country": "Spain",
-      "emoji": "🇪🇸",
-      "date": "2024-04-17T15:17:32.895Z",
-      "notes": "a",
-      "position": {
-        "lat": "39.38526381099774",
-        "lng": "-1.1206054687500002"
-      }
-    },
-    {
-      "id": "59b1",
-      "cityName": "Martos",
-      "country": "Spain",
-      "emoji": "🇪🇸",
-      "date": "2024-04-17T15:18:54.017Z",
-      "notes": "",
-      "position": {
-        "lat": "37.73596920859053",
-        "lng": "-3.9770507812500004"
-      }
-    },
-    {
-      "id": "68f7",
-      "cityName": "Zufre",
-      "country": "Spain",
-      "emoji": "🇪🇸",
-      "date": "2024-04-17T15:19:40.495Z",
-      "notes": "",
-      "position": {
-        "lat": "37.85750715625203",
-        "lng": "-6.284179687500001"
-      }
-    },
-    {
-      "id": "4856",
-      "cityName": "Vilar de Barrio",
-      "country": "Spain",
-      "emoji": "🇪🇸",
-      "date": "2024-04-17T15:19:46.764Z",
-      "notes": "",
-      "position": {
-        "lat": "42.17968819665963",
-        "lng": "-7.624511718750001"
+        "lat": "40.763901280945866",
+        "lng": "-1.0546875000000002"
       }
     }
   ]

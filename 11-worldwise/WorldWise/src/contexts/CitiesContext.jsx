@@ -49,7 +49,20 @@ function CitiesProvider({ children }) {
       const data = await res.json();
       setCities((cities) => [...cities, data]);
     } catch {
-      alert("There was an error Loading data");
+      alert("There was an error Creating City.");
+    } finally {
+      setIsLoading(false);
+    }
+  }
+  async function DeleteCity(id) {
+    try {
+      setIsLoading(true);
+      await fetch(`${BASE_URL}/cities/${id}`, {
+        method: "DELETE",
+      });
+      setCities((cities) => cities.filter((city) => city.id !== id));
+    } catch {
+      alert("There was an error Deleting City.");
     } finally {
       setIsLoading(false);
     }
@@ -63,6 +76,7 @@ function CitiesProvider({ children }) {
         currentCity,
         getCity,
         createCity,
+        DeleteCity,
       }}
     >
       {children}

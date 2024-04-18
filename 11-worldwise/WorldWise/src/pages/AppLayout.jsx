@@ -8,8 +8,8 @@ export default function AppLayout() {
   return (
     <div className={styles.app}>
       <SideBar></SideBar>
-      <User></User>
       <Map></Map>
+      <User></User>
     </div>
   );
 }

@@ -1,15 +1,51 @@
 {
   "cities": [
     {
-      "id": "8a0a",
-      "cityName": "Pancrudo",
+      "id": "74fe",
+      "cityName": "Carazo",
       "country": "Spain",
       "emoji": "🇪🇸",
-      "date": "2024-04-17T16:16:01.402Z",
-      "notes": "test",
+      "date": "2024-04-18T14:48:27.607Z",
+      "notes": "",
       "position": {
-        "lat": "40.763901280945866",
-        "lng": "-1.0546875000000002"
+        "lat": "41.96765920367816",
+        "lng": "-3.3398437500000004"
+      }
+    },
+    {
+      "id": "c4df",
+      "cityName": "Giza",
+      "country": "Egypt",
+      "emoji": "🇪🇬",
+      "date": "2024-04-18T14:48:35.992Z",
+      "notes": "",
+      "position": {
+        "lat": "29.420460341013158",
+        "lng": "31.354980468750004"
+      }
+    },
+    {
+      "id": "0194",
+      "cityName": "Titaguas",
+      "country": "Spain",
+      "emoji": "🇪🇸",
+      "date": "2024-04-18T14:55:55.724Z",
+      "notes": "",
+      "position": {
+        "lat": "39.85915479295669",
+        "lng": "-1.1425781250000002"
+      }
+    },
+    {
+      "id": "1aba",
+      "cityName": "Huescar",
+      "country": "Spain",
+      "emoji": "🇪🇸",
+      "date": "2024-04-18T14:55:58.045Z",
+      "notes": "",
+      "position": {
+        "lat": "37.87485339352928",
+        "lng": "-2.5268554687500004"
       }
     }
   ]

@@ -5,7 +5,7 @@ const initialState = {
   loan: 0,
   loanPurpose: "",
 };
-
+// reducer function
 function reducer(state = initialState, action) {
   switch (action.type) {
     case "account/deposit":

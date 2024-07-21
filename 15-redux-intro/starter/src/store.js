@@ -1,4 +1,4 @@
-import { createStore } from "redux";
+import { combineReducers, createStore } from "redux";
 
 const initialStateAccount = {
   balance: 0,
@@ -11,7 +11,7 @@ const initialStateCustomer = {
   createdAt: "",
 };
 
-function reducer(state = initialStateAccount, action) {
+function accountReducer(state = initialStateAccount, action) {
   switch (action.type) {
     case "account/deposit":
       return { ...state, balance: state.balance + action.payload };
@@ -38,20 +38,42 @@ function reducer(state = initialStateAccount, action) {
   }
 }
 
-const store = createStore(reducer);
+function customerReducer(state = initialStateCustomer, action) {
+  switch (action.type) {
+    case "customer/createCustomer":
+      return {
+        ...state,
+        fullName: action.payload.fullName,
+        nationalID: action.payload.nationalID,
+        createdAt: action.payload.createdAt,
+      };
+    case "customer/updateName":
+      return {
+        ...state,
+        fullName: action.payLoad.fullName,
+      };
+  }
+}
+//we should compine all the reducers we have
+const rootReducer = combineReducers({
+  account: accountReducer,
+  customer: customerReducer,
+});
+const store = createStore(accountReducer);
 
-// store.dispatch({ type: "account/deposit", payload: 500 });
-// console.log(store.getState());
-// store.dispatch({ type: "account/withdraw", payload: 200 });
-// console.log(store.getState());
-// store.dispatch({
-//   type: "account/requestLoan",
-//   payload: { amount: 1000, purpose: "Buy a car" },
-// });
-// console.log(store.getState());
-// store.dispatch({ type: "account/payLoan" });
-// console.log(store.getState());
+store.dispatch({ type: "account/deposit", payload: 500 });
+console.log(store.getState());
+store.dispatch({ type: "account/withdraw", payload: 200 });
+console.log(store.getState());
+store.dispatch({
+  type: "account/requestLoan",
+  payload: { amount: 1000, purpose: "Buy a car" },
+});
+console.log(store.getState());
+store.dispatch({ type: "account/payLoan" });
+console.log(store.getState());
 
+// action creators
 function deposit(amount) {
   return { type: "account/deposit", payload: amount };
 }
@@ -93,3 +115,6 @@ function createCustomer(fullName, nationalID) {
 function updateName(fullName) {
   return { type: "account/updateName", payload: fullName };
 }
+
+store.dispatch(createCustomer("MAGED", "235646354"));
+console.log(store.getState());
